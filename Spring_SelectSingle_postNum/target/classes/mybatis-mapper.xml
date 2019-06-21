@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.PostDao">
+ 
+	<resultMap id="result" type="PostData" >
+		<result property="postNum" column="postNum"/>
+		<result property="cityDo" column="do"/>
+		<result property="citySi" column="si"/>
+		<result property="streetName" column="streetName"/>
+		<result property="houseNum" column="houseNum"/>
+	</resultMap>
+	
+	<select id="getMaxPostNum" resultType="int">
+		SELECT MAX(postNum) AS max_postNum FROM postNum
+	</select>
+	
+	<select id="getHouseNumByStreetName" resultType="int">
+		SELECT houseNum FROM postNum WHERE streetName = #{streetName}
+	</select>
+	
+	<select id="getPostNumByStreetNameANDHouseNum" resultType="int" parameterType="PostData">
+		SELECT postNum FROM postNum WHERE streetName = #{streetName} AND houseNum = #{houseNum}
+	</select>
+	
+	<select id="getPostDataByPostNum" resultMap="result">
+		SELECT * FROM postNum WHERE postNum = #{postNum}
+	</select>
+
+</mapper>

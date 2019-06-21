@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.springlec.mybatis.EmployeeDAO">
+ 
+ 
+    <insert id="saveEmployee" parameterType="Employee">
+        INSERT INTO employee  VALUES (#{id},#{age},#{dept},#{name})
+    </insert>
+   
+	<select id="getEmployeeById" parameterType="int" resultType="Employee">
+        SELECT * FROM employee WHERE id = #{id}
+    </select>
+ 
+    <select id="getAllEmployees" resultType="Employee">
+        SELECT * FROM employee
+    </select>
+ 
+</mapper>

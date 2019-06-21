@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.CmemberDAO">
+	<resultMap type="cMember" id="result">
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="cNum" column="cNum"/>
+	</resultMap>
+	
+	<select id="getByIdStartWord" resultMap="result">
+		SELECT * FROM cmember WHERE id like CONCAT(#{idStartWord}, "%")
+	</select>
+	<select id="getByOvercNum" resultMap="result">
+		SELECT * FROM cmember WHERE cNum >= #{cNum}
+	</select>
+	<select id="getByNameLast" resultMap="result">
+		SELECT * FROM cmember WHERE name like CONCAT("%", #{nameLast})
+	</select>
+	<select id="getByPWStartWord" resultMap="result">
+		SELECT * FROM cmember WHERE pw like CONCAT(#{pwStartWord}, "%")
+	</select>
+</mapper>

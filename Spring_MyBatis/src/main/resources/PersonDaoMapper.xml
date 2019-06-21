@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.mybatis.PersonDao">
+
+	<resultMap id="result" type="Person">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+	</resultMap>
+	
+	<select id="selectAll" resultMap="result">
+		SELECT * FROM persons;
+	</select>
+	
+	<insert id="insert" parameterType="Person" useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO persons(name) VALUES(#{name});
+	</insert>
+	
+	<update id="update" parameterType="Person">
+		UPDATE persons
+		SET name=#{name}
+		WHERE id=#{id}
+	</update>
+	
+	<select id="selectById" parameterType="Integer" resultMap="result">
+		SELECT * FROM persons WHERE id =#{id}
+	</select>	
+	
+	<delete id="delete" parameterType="Integer">
+		DELETE FROM persons WHERE id = #{id}
+	</delete>
+	
+	<select id="selelctCondition" parameterType="Integer" resultMap="result">
+		SELECT * FROM persons WHERE id > #{id}
+	</select>	
+	
+	<select id="selectLike" parameterType="String" resultMap="result">
+		SELECT * FROM persons WHERE id like CONCAT("%", #{cond})
+	</select>
+	
+	<select id="selectAllMapResult" resultType="map">
+		SELECT * FROM persons
+	</select>
+	
+	<select id="selectMapParaMapResult" parameterType="map" resultType="map">
+		SELECT * FROM persons WHERE id=#{id} AND name=#{name}
+	</select>
+</mapper>
+

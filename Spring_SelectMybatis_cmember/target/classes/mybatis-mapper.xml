@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.test.dao.CmemberDAO">
+	
+	<resultMap id="result" type="Cmember">
+		<result property="id" column="id"/>
+		<result property="pw" column="pw"/>
+		<result property="name" column="name"/>
+		<result property="cNum" column="cNum"/>
+	</resultMap>
+	
+
+	<select id="getRecordNum" resultType="int">
+		SELECT COUNT(*) AS count FROM cmember;
+	</select>
+
+	<select id="getPwById" resultType="String">
+		SELECT pw FROM cmember WHERE id = #{id}
+	</select>
+	
+	<select id="getIdByCNum" resultType="String">
+		SELECT id FROM cmember WHERE cNum = #{cNum}
+	</select>
+	
+	<select id="getDataByNameANDCNum" parameterType="Cmember" resultMap="result">
+		SELECT * FROM cmember WHERE name=#{name} AND cNum=#{cNum}
+	</select>
+
+	<select id="getDataByPw" resultMap="result">
+		SELECT * FROM cmember WHERE pw=#{pw}
+	</select>
+	
+	<insert id="setRecord" parameterType="Cmember">
+		INSERT INTO cmember(id, pw, name, cNum) VALUES(#{id}, #{pw}, #{name}, #{cNum})
+	</insert>
+	
+	<delete id="delRecordByPw">
+		DELETE FROM cmember WHERE pw=#{pw}
+	</delete>
+	
+	<update id="setPwById">
+		UPDATE cmember SET pw=#{pw} WHERE id=#{id}; 
+	</update>
+	
+</mapper>

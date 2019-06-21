@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean id="superman" class="com.test.xml_bean.Movie">
+		<property name="name" value="superman"></property>
+		<property name="price" value="3000"></property>
+	</bean>
+	<bean id="vod_play" class="com.test.xml_bean.VodPlayer">
+		<property name="movie" ref="superman"></property>
+	</bean>
+	<bean id="remote_control" class="com.test.xml_bean.RemoteControl">
+		<property name="vp" ref="vod_play"></property>
+		<property name="ch" value="10"></property>
+	</bean>
+	
+</beans>

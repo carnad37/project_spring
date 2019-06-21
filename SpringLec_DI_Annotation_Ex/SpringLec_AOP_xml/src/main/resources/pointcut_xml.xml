@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-3.2.xsd">
+ 
+ <bean id="myAspect" class="com.springlec.aop.xml_pointcut.MyAspect" />
+ <bean id="owner" class="com.springlec.aop.xml_pointcut.Owner" />
+ <bean id="maid" class="com.springlec.aop.xml_pointcut.Maid" />
+
+
+<aop:config> 
+	<aop:aspect id="myAspect" ref="myAspect">	  	 
+		<aop:pointcut id="ownpc" expression="execution(* call*())"  />  
+		<aop:before pointcut-ref="ownpc" method="ownerBefore" />   
+		<aop:pointcut id="maidpc" expression="bean(maid)"  />  
+		<aop:before pointcut-ref="maidpc" method="maidBefore" />
+		
+		
+		<aop:pointcut id="ownerWithin" expression="within(com.springlec.aop.xml_pointcut.*)"  /> 
+		<!-- 
+		<aop:pointcut id="ownerWithin" expression="within(com.springlec.aop.xml_pointcut..*)"  />
+		 -->
+		
+  	</aop:aspect>
+</aop:config>
+
+</beans>
