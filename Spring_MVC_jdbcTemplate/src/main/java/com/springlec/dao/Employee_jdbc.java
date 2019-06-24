@@ -48,7 +48,7 @@ public class Employee_jdbc implements EmployeeDAO {
 
 	@Override
 	public List<Employee> getAllEmployees() {
-		String SQL = "SELECT * FROM employee1";
+		String SQL = "SELECT * FROM employee";
 		List<Employee> eList = null;
 		try {
 			eList = jdbcTemplate.query(SQL, new BeanPropertyRowMapper<Employee>(Employee.class));

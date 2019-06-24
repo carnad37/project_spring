@@ -44,7 +44,8 @@ public class HomeController {
 //		return "result";
 //	}
 //	
-    @Autowired
+
+	@Autowired
     private EmployServiceImpl employeeSvc;
 
     @RequestMapping("/")
@@ -52,15 +53,14 @@ public class HomeController {
     {
     	return "employeeFrom";
     }
+    
     @RequestMapping(value = "/employee",method=RequestMethod.GET)
     public String saveEmployee(Employee employee)
  
     {
-    	System.out.println("saveEmployee");
-    	
-    	System.out.println(employee.getId()+", "+employee.getName()+", "+employee.getAge()+", "+employee.getDept());
-        employeeSvc.saveEmployee(employee);
-        
+    	System.out.println("saveEmployee");    	
+    	System.out.println(employee.getId() + ", " + employee.getName()+", "+employee.getAge()+", "+employee.getDept());
+        employeeSvc.saveEmployee(employee);        
         return "redirect:/employees";
     }
    
