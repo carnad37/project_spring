@@ -50,5 +50,12 @@ public class ContextConfigTest {
 	}
 	
 	
+	/*
+	  
+	 view()=>hello
+	  
+	 
+	 */
+	
 
 }

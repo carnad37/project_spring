@@ -37,8 +37,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value = "/hello", method = RequestMethod.GET)
-	public String hello( Model model) {
+	public String hello(String name, Model model) {
 		model.addAttribute("greeting", "hello");
+		model.addAttribute("name", name);
 		return "hello";
 	}
 	
